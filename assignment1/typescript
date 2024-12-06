@@ -1,0 +1,95 @@
+Script started on Tue 24 Sep 2024 03:30:48 PM PDT
+]0;karanovl@otter: ~/csci260/assignment1[01;32mkaranovl@otter[00m:[01;34m~/csci260/assignment1[00m$ ./binp[K/pecx[K[Kx1
+Command list: 
+submit: Submit a new job request.
+execute: Removes the job with the highest priority from the job queue.
+lottery: Randomly removes a lucky job from the job queue.
+quit: Terminates the program..
+Enter a command: execute
+No jobs available to execute.
+Enter a command: lottery
+No jobs available to execute.
+Enter a command: quit
+Program is being terminated, deleting job queue.
+All jobs are killed. Terminating the program.
+Thank you for using the program!
+]0;karanovl@otter: ~/csci260/assignment1[01;32mkaranovl@otter[00m:[01;34m~/csci260/assignment1[00m$ ./bin1/pex1
+bash: ./bin1/pex1: No such file or directory
+]0;karanovl@otter: ~/csci260/assignment1[01;32mkaranovl@otter[00m:[01;34m~/csci260/assignment1[00m$ ./bin1/pex1[1P/pex1[C[C[C[C[C
+Command list: 
+submit: Submit a new job request.
+execute: Removes the job with the highest priority from the job queue.
+lottery: Randomly removes a lucky job from the job queue.
+quit: Terminates the program..
+Enter a command: submit
+Enter the type of job (SYSTEM or USER): user
+What is the estimated execution time for your job (ms)?: 12
+Enter the command for the job: copy a file
+Who started this job?: karanovl
+Enter the resources for the job: none
+Enter a command: execte  ute
+Executing job...
+Job type: USER	 Estimated execution time: 12	 User: karanovl
+Command name: copy a file	 Resources: none
+
+Enter a command: submit
+Enter the type of job (SYSTEM or USER): user
+What is the estimated execution time for your job (ms)?: 15
+Enter the command for the job: move a file
+Who started this job?: karanovl
+Enter the resources for the job: lab1.cpp
+Enter a command: submit
+Enter the type of job (SYSTEM or USER): system
+What is the estimated execution time for your job (ms)?: virus     scan vo       27
+Enter the command for the job: scan for viruses
+Who started this job?: root
+Enter the resources for the job: none
+Enter a command: submit
+Enter the type of job (SYSTEM or USER): user
+What is the estimated execution time for your job (ms)?: 7.1
+Enter the command for the job: copy a file
+Who started this job?: davidw
+Enter the resources for the job: lab2.cpp
+Enter a command: submit
+Enter the type of job (SYSTEM or USER): user
+What is the estimated execution time for your job (ms)?: 3.7
+Enter the command for the job: delete a file
+Who started this job?: davidw
+Enter the resources for the job: lab1.cpp
+Enter a command: lottery
+Executing random job...
+Job type: USER	 Estimated execution time: 15	 User: karanovl
+Command name: move a file	 Resources: lab1.cpp
+
+Enter a command: lottery
+Executing random job...
+Job type: USER	 Estimated execution time: 3.7	 User: davidw
+Command name: delete a file	 Resources: lab1.cpp
+
+Enter a command: execute
+Executing job...
+Job type: SYSTEM	 Estimated execution time: 27	 User: root
+Command name: scan for viruses	 Resources: none
+
+Enter a command: submit
+Enter the type of job (SYSTEM or USER): system
+What is the estimated execution time for your job (ms)?: 13
+Enter the command for the job: boot application
+Who started this job?: root
+Enter the resources for the job: none
+Enter a command: e burger
+Not a valid command, try again.
+Enter a command: quit
+Program is being terminated, deleting job queue.
+Job type: SYSTEM	 Estimated execution time: 13	 User: root
+Command name: boot application	 Resources: none
+
+Job type: USER	 Estimated execution time: 7.1	 User: davidw
+Command name: copy a file	 Resources: lab2.cpp
+
+All jobs are killed. Terminating the program.
+Thank you for using the program!
+]0;karanovl@otter: ~/csci260/assignment1[01;32mkaranovl@otter[00m:[01;34m~/csci260/assignment1[00m$ exit
+exit
+
+Script done on Tue 24 Sep 2024 03:34:10 PM PDT

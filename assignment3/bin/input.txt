@@ -1,0 +1,21 @@
+6 // number of servers followed with 6 names
+Daisy
+Heather
+Iris
+Jasmine
+Rose
+Violet
+7 // number of direct links: two server names, unit cost and volume capacity
+Daisy Iris 7.5 50
+Daisy Heather 25.8 60
+Daisy Violet 14.2 80
+Heather Jasmine 12.7 28
+Iris Jasmine 8.3 75
+Iris Violet 3.5 35
+Jasmine Violet 2.1 67
+5 // number of communication demands: two server names, volume needed
+Daisy Iris 38
+Daisy Jasmine 52
+Daisy Violet 62
+Heather Violet 59
+Heather Rose 15

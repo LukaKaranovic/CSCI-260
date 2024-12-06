@@ -1,0 +1,144 @@
+# Specifications
+CSCI 260 Fall 2024 - Programming Assignment 1 (v1.0.4)
+
+Develop a C++ program that simulates a computer job queue (batch queue).
+
+There are two types of jobs in a computer system, system jobs and user jobs.
+
+A job has these defined characteristics:
+    - String type: job type which is either "SYSTEM" or "USER".
+    - Double time: estimated execution time of the job.
+        - Time cannot be negative.
+    - String userID: A Linux username that indicates who started this job.
+        - System jobs are normally started by "root".
+    - String commandName: command used to start this job.
+    - String resources: describes the resources this job requires.
+
+The program must run an interactive interface with the following commands:
+    submit: Submit a new job request. The program asks for the job's time, estimated execution time, user id, command name and a line to describe the resources the job requires. Then your program should insert the job into the job queue.
+    execute: Removes the job with the highest priority from the job queue.
+    lottery: Randomly removes a lucky job from the job queue. This command is designed to give the long and/or user jobs a chance to be executed earlier than its priority warrants.
+    quit: Terminates the program. Before the termination, the program should empties the job queue by removing jobs one by one as a simulation of forcibly killing all uncompleted jobs.
+
+A priority queue ADT must be designed Sand implemented for this assignment. The expected performance of the operations insert() and removeMin() are O(logN) where N = the number of jobs in the job queue.
+
+## Design
+For this program, I have designed three classes (each with a header (.h) and implementation (.cpp) file). I have also added a main.cpp which implements the interactive interface with the required commands. I chose this design because it separates all the objects and data structures nicely, and it allows reusability for future assignments through my template dynamic array class.
+
+Class 1: DynamicArray<T>
+    - A class template for managing an array of any data T. The template is meant to be reused in future assignments and other courses. It contains basic dynamic array operations and properties, copy and move constructors, copy and move assignments, and has a default capacity of 10. The array will double its size if necessary.
+    - In the context of this assignment, I have made a template class DynamicArray<Job> at the bottom of my implementation code to generate a dynamic array class containing the Job class as a data type. Refer to the notes section for additional details.
+Class 2: Job
+    - Job encapsulates all of the data required for a job stated in the specifications section: type, time, userID, commandName, and resources.
+    - Job has constructors, destructors, getter functions, a typePriority() method which returns an integer value for the job's type (used for comparison operators), a displayInfo() method which prints the object's information, and overloads comparison operators to help compare one job's priority with another.
+    - At the moment, there isn't a way to modify a job's data once it is created.
+Class 3: JobQueue
+    - JobQueue is a priority queue implemented using a heap. The heap is implemented through the DynamicArray<Job> class. The class has private heap methods to maintain heap order.
+    - JobQueue has constructors, destructors, basic operations such as insert() and removeMin(), a removeAt() method to remove a job at a specific index (for lottery), and a displayQueue() method which displays every job currently in the queue (though there is no way to use this from main).
+
+## Implementation
+I chose to use a heap to implement my priority queue ADT as the required performance for the assignment were that insert() and removeMin() must have time complexity O(logN). Implementing with a heap is the only way we have learned to do this such that those requirements are met, as an array-based implementation makes removeMin() have complexity O(N) and a linked list implementation makes insert() have complexity O(N).
+
+After doing some research, an alternative way to implementing a priority queue such that insert() and removeMin() have complexity O(logN) is to use a binary search tree. However, since we have covered heaps more than BSTs at this point in the course, I had more familiarity with the structure and operations of a heap and felt it was more relevant and easier to implement a heap than a BST.
+
+For my heap, I chose to use a dynamic array as I already had a lot of the code for a dynamic array template class from a past course (CSCI 161). I also found the array-based implementation to be easier to understand, implement, and maintain versus the pointer-based implementation. 
+
+An advantage of using a linked list implementation over an array is that you don't need a contiguous block of memory and you are always using all of the memory as the capacity increases with the size of the heap. Meanwhile, using a dynamic array means that if you have an array of size 1, and a capacity of 10, 9 slots are not being used at all, plus the memory must be in a big consecutive block. The disadvantage of using a linked list or any other pointer-based implementation over an array is that pointers are harder to work with and track. The code is more cluttered and the logic requires more values to maintain and keep track of, leading to a higher chance of errors.
+
+## Analysis
+Note: as defined in specifications, N = the number of jobs in the queue.
+
+Since my priority queue ADT is implemented using a heap, the insert() and removeMin() operations both have time complexity O(logN). This is because downheap and upheap operations are performed in those functions and they have to navigate at most from the top of the tree to the bottom (or vice versa), and the height of a tree is logN.
+
+    submit: O(logN) - This command first creates a Job object which takes constant time O(1) as it is just gathering values and creating an object. Then, it is inserted into the job queue using insert() which has time complexity O(logN) as explained above, thus the overall time complexity is O(logN).
+    execute: O(logN) - Execute directly calls the removeMin() operation from the job queue, which as explained above takes time O(logN).
+    lottery: O(logN) - The worst case scenario is that lottery calls for the removal of the job at the root node, as it will have to call removeMin() which has complexity O(logN). If a node closer to the bottom is called, then the downheap only has to be done from that node to the bottom, which is less than O(logN).
+    quit: O(NlogN) - This command must execute each and every single job before terminating. If there are N jobs left in the queue, it must call removeMin() N times. Since removeMin() has complexity O(logN), the complexity is O(NlogN).
+
+## Accomplishment
+I have accomplished all parts of the assignment:
+    - Implementation
+    - Documentation
+    - Makefile
+    - README
+    - Testing
+
+## Testing
+For my testing, I used a typescript, which can be viewed in the assignment directory. I wrote down the actions (test cases) I wanted to perform before doing the typescript. 
+Behind the // markers, I put the expected output of the program should do.
+Behind the * marker, I put the reason I was testing this action.
+
+1. Execute on an empty job queue. 
+// Should output "No jobs available to execute."
+* Testing to make sure my queue is empty when it is supposed to be, and that proper error handling occured.
+
+2. Lottery on an empty job queue. 
+// Should output "No jobs available to execute."
+* Testing to make sure my queue is empty when it is supposed to be, and I won't be accessing garbage memory + proper error handling.
+
+3. Quit on an empty job queue. 
+// Should output "Program is being terminated, deleting job queue."
+// "All jobs are killed. Terminating the program."
+// "Thank you for using the program!"
+* Testing to make sure my quit command still terminates the program, even when there are no jobs to remove from the queue.
+Note: I entered command 'quit' so I need to rerun the program.
+
+4. Submit a user job of execution time 12.
+// No output, job should be inserted in queue position #1
+* Wanted to test that I could insert a job into the queue properly.
+
+5. Execute on a job queue of size 1.
+// Should output all job information, including that the job is of type "USER" and has estimated execution time 12.
+* Wanted to test that my execute removes the correct job when the queue is size 1.
+
+6. Submit a user job of execution time 15.
+// No output, job should be inserted and be in queue position #1
+* Placeholder job to add to the queue to do other tests.
+
+7. Submit a system job of execution time 27.
+// No output, job should be inserted and be in queue position #1
+* To make sure a system job with a high execution time is ahead of any user jobs.
+
+8. Submit a user job of execution time 7.1.
+// No output, job should be inserted and be in queue position #2
+* To test if this user job is ahead of the other use job with a higher time.
+
+9. Submit a user job of execution time 3.7.
+// No output, job should be inserted and be in queue position #2
+* Placeholder job to add to the queue to do other tests.
+
+10. Call lottery on the job queue of size 4 (hopefully will not get the highest priority job).
+// Should remove a random job and output the job's information.
+* Call lottery to see if it works properly and removes a random job.
+
+11. Call lottery on the job queue of size 3.
+// Should remove a random job and output the job's information.
+* Call lottery again incase it coincidentally removed the first job from the queue last time, to test if it properly removes a job from a specific index.
+
+12. Execute on the job queue of size 2.
+// Should remove the job currently in queue position #1 after the two lottery removals.
+* Call execute to see if the priority queue order hasn't been broken from the lottery calls. 
+Note: No matter what, the job submitted in action #6 shouldn't be executed here.
+
+13. Submit a system job of execution time 13.
+// No output, job should be inserted and be in correct queue position #1, as all previous jobs would have a lower priority regardless of what was removed in lottery.
+* Adding a job to the queue that should be top priority so it gets executed first when I type quit.
+
+14. Input a garbage command when prompted.
+// Should output "Not a valid command, try again."
+* Making sure my command interface properly handles invalid commands.
+
+15. Quit on the job queue of size 2.
+// Should output "Program is being terminated, deleting job queue."
+// Afterwards, outputs the information of the last two jobs, in order of priority.
+// "All jobs are killed. Terminating the program."
+// "Thank you for using the program!"
+* Make sure that my program executes the remaining jobs in the correct order before terminating.
+Note: I entered the 'quit' command so the program should terminate.
+
+## Known Bugs
+No known bugs to date (v1.0.4).
+
+## Notes
+Please note that my dynamic array class is a template class. This was done so that it can be used in other assignments with only slight modifications needed. 
+Because of this, some of the dynamic array helper functions are unused (such as remove(int), move constructor/assignment, etc.), and some were added (such as decSize()) to help with JobQueue class operations.
