@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 #include <cmath>
+#include <fstream>
 #include "../include/graph.h"
 
 using std::string;
@@ -32,21 +33,6 @@ using std::endl;
         return target;
     }
 
-    // vector<Edge*> Graph::processPath(vector<int>& path, int dest) {
-    //     vector<Edge*> edgePath;
-
-    //     for (unsigned int i = 0; i < path.size()-1; i++) {
-    //         edgePath.push_back(adjMatrix[path[i]][path[i+1]]);
-    //         edgePath.push_back(adjMatrix[path[i+1]][path[i]]);
-    //     }
-
-    //     if (path[path.size()-1] != dest) {
-    //         edgePath.clear();
-    //     }
-
-    //     return edgePath;
-    // }
-
     Graph::Graph(vector<string> V, int size): vertices(V) {
         adjMatrix = vector<vector<Edge>>(size, vector<Edge>(size, {-1, 0, 0}));
     }
@@ -55,18 +41,6 @@ using std::endl;
         vertices.clear();
         adjMatrix.clear();
     }
-
-    void Graph::insertVertex(string name) {
-        for (unsigned int i = 0; i < vertices.size(); i++) {
-            if (name == vertices[i]) {
-                return;
-                //throw invalid_argument("Vertex with this name already exists within the graph.");
-            }
-        }
-        
-        vertices.push_back(name);
-    }
-
 
     int Graph::findVertex(string name) {
         for (unsigned int i = 0; i < vertices.size(); i++) {
@@ -122,8 +96,9 @@ using std::endl;
     }
 
     void Graph::printMatrix() {
-        for (unsigned int i = 0; i < adjMatrix.size(); i++) {
-            for (unsigned int j = 0; j < adjMatrix.size(); j++) {
+        for (int i = 0; i < (int)adjMatrix.size(); i++) {
+            cout << vertices[i][0] << ":\t";
+            for (int j = 0; j < (int)adjMatrix.size(); j++) {
                 cout << "{" << adjMatrix[i][j].unitCost << " " << adjMatrix[i][j].capacity << " " << adjMatrix[i][j].load << "}\t";
             }
             cout << endl;
@@ -135,6 +110,16 @@ using std::endl;
         adjMatrix[v2][v1].load += demand;
     }
 
+    void Graph::printResults(std::ostream& stream) {
+        stream << "In order to meet the rest of the communication demands with the lowest cost possible, the following direct link(s) must expand their capacity: " << endl;
+        for (int i = 0; i < (int)adjMatrix.size(); i++) {
+            for (int j = 0; j < i; j++) {
+                if (adjMatrix[i][j].capacity < adjMatrix[i][j].load) {
+                    stream << vertices[i] << " to " << vertices[j] << " " << " must expand its capacity from " << adjMatrix[i][j].capacity << " to " << adjMatrix[i][j].load << endl;
+                }
+            }
+        
+        }
+    }
 
     
-

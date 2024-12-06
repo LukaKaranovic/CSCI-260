@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
     ifstream input(filename);
 
     if (!input.is_open()) {
-        cout << "Unable to open input file. Check if it exists or if it has read permissions" << endl;
+        cout << "Unable to open input file. Check if it exists or if it has read permissions." << endl;
         exit(1);
     }
     vector<string> V;
@@ -65,9 +65,15 @@ int main(int argc, char** argv) {
 
     getline(input, line);
     int numConnections = stoi(line);
-    cout << "Number of connections: " << numConnections << endl;
-    
 
+    ofstream output("../testing/techAnalysisResult.txt");
+    if (!output.is_open()) {
+        cout << "Unable to open output file. Check if it exists or if it has read permissions." << endl;
+        cout << "File should be located in 'testing' subdirectory and have the named 'techAnalysisResult.txt'." << endl;
+        exit(1);
+    } 
+    output << "Technology analysis based on the data in file: " << argv[1] << "." << endl << endl;
+    output << "The following communication demands cannot be met by the current infrastructure due to the lack of a route between the two servers: " << endl << endl;
 
     for(int i = 0; i < numConnections; i++){
         getline(input, line, ' ');
@@ -81,18 +87,18 @@ int main(int argc, char** argv) {
         vector<int> shortestPath = g.findPath(v1, v2); 
 
         if (shortestPath[(int)shortestPath.size()-1] != v2) {
-            // report bad results.
+            output << V[v1] << " " << V[v2] << " " << demandedCost << endl;
             continue;
         }
-        cout << endl;
         for (int j = 0; j < (int)shortestPath.size()-1; j++) {
             g.updateLoad(demandedCost, shortestPath[j], shortestPath[j+1]);
         }
     }
-
-    g.printMatrix();
+    output << endl;
+    g.printResults(output);
 
     input.close();
+    output.close();
     return 0;
 
 }
