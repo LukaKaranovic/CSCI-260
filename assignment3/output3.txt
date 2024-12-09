@@ -1,0 +1,10 @@
+Technology analysis based on the data in file: input3.txt.
+
+The following communication demands cannot be met by the current infrastructure due to the lack of a route between the two servers: 
+
+Dave Humayun 100
+Kawal Ajay 71
+
+In order to meet the rest of the communication demands with the lowest cost possible, the following direct link(s) must expand their capacity: 
+Dave to Huizhu must expand its capacity from 55 to 62
+Sarah to Dave must expand its capacity from 60 to 62

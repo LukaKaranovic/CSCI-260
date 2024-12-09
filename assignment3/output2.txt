@@ -1,0 +1,12 @@
+Technology analysis based on the data in file: input2.txt.
+
+The following communication demands cannot be met by the current infrastructure due to the lack of a route between the two servers: 
+
+Oregon Mumbai 42
+Mumbai Toronto 62
+
+In order to meet the rest of the communication demands with the lowest cost possible, the following direct link(s) must expand their capacity: 
+Toronto to Oregon must expand its capacity from 74 to 83
+London to Mumbai must expand its capacity from 240 to 284
+Jakarta to Mumbai must expand its capacity from 163 to 284
+Jakarta to Singapore must expand its capacity from 43 to 122

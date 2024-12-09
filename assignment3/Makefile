@@ -1,4 +1,4 @@
-CXXFLAGS = -Iinclude/ -Wall -Wextra -Wpedantic -Werror -g 
+CXXFLAGS = -Iinclude/ -Wall -Wextra -Wpedantic -Werror -g -std=c++17 -lstdc++fs
 
 bin/pex3: build/main.o build/graph.o
 	${CXX} -o $@ $^

@@ -5,7 +5,7 @@ The following communication demands cannot be met by the current infrastructure 
 Heather Rose 15
 
 In order to meet the rest of the communication demands with the lowest cost possible, the following direct link(s) must expand their capacity: 
-Iris to Daisy  must expand its capacity from 50 to 152
-Jasmine to Heather  must expand its capacity from 28 to 59
-Violet to Iris  must expand its capacity from 35 to 114
-Violet to Jasmine  must expand its capacity from 67 to 111
+Iris to Daisy must expand its capacity from 50 to 152
+Jasmine to Heather must expand its capacity from 28 to 59
+Violet to Iris must expand its capacity from 35 to 114
+Violet to Jasmine must expand its capacity from 67 to 111
