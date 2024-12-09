@@ -1,0 +1,22 @@
+7 
+Oregon
+Texas
+Toronto
+Mumbai
+Singapore
+London
+Jakarta
+7
+Oregon Texas 5.3 150
+Texas Toronto 17.5 175
+Oregon Toronto 7.5 74
+Mumbai Singapore 32.3 65 
+Singapore Jakarta 1.7 43
+Mumbai Jakarta 14.3 163
+London Mumbai 65.7 240
+5
+Oregon Mumbai 42
+Texas Toronto 83
+London Jakarta 162
+Mumbai Toronto 62
+Singapore London 122

@@ -1,0 +1,53 @@
+Script started on 2024-12-09 00:43:09-08:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="226" LINES="12"]
+[?2004h]0;karanovl@tux7: ~/csci260/assignment3[01;32mkaranovl@tux7[00m:[01;34m~/csci260/assignment3[00m$ exitvalgrind ./bin/pex3 input1.txt2.txt1.txt
+[?2004l==3257487== Memcheck, a memory error detector
+==3257487== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==3257487== Using Valgrind-3.16.1 and LibVEX; rerun with -h for copyright info
+==3257487== Command: ./bin/pex3 input1.txt
+==3257487== 
+Analysis complete! Results can be found can be found in 'output/techAnalysisResult.txt'.
+==3257487== 
+==3257487== HEAP SUMMARY:
+==3257487==     in use at exit: 0 bytes in 0 blocks
+==3257487==   total heap usage: 46 allocs, 46 frees, 93,274 bytes allocated
+==3257487== 
+==3257487== All heap blocks were freed -- no leaks are possible
+==3257487== 
+==3257487== For lists of detected and suppressed errors, rerun with: -s
+==3257487== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+[?2004h]0;karanovl@tux7: ~/csci260/assignment3[01;32mkaranovl@tux7[00m:[01;34m~/csci260/assignment3[00m$ valgrind ./bin/pex3 input1.txtexit[Kvalgrind ./bin/pex3 input1.txt2.txt
+[?2004l==3257514== Memcheck, a memory error detector
+==3257514== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==3257514== Using Valgrind-3.16.1 and LibVEX; rerun with -h for copyright info
+==3257514== Command: ./bin/pex3 input2.txt
+==3257514== 
+Analysis complete! Results can be found can be found in 'output/techAnalysisResult.txt'.
+==3257514== 
+==3257514== HEAP SUMMARY:
+==3257514==     in use at exit: 0 bytes in 0 blocks
+==3257514==   total heap usage: 44 allocs, 44 frees, 93,476 bytes allocated
+==3257514== 
+==3257514== All heap blocks were freed -- no leaks are possible
+==3257514== 
+==3257514== For lists of detected and suppressed errors, rerun with: -s
+==3257514== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+[?2004h]0;karanovl@tux7: ~/csci260/assignment3[01;32mkaranovl@tux7[00m:[01;34m~/csci260/assignment3[00m$ valgrind ./bin/pex3 input2.txt1.txtexit[Kvalgrind ./bin/pex3 input1.txt2.txt1.txtexit[Kvalgrind ./bin/pex3 input2.txt1.txtexit[Kvalgrind ./bin/pex3 input3.txt
+[?2004l==3257593== Memcheck, a memory error detector
+==3257593== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==3257593== Using Valgrind-3.16.1 and LibVEX; rerun with -h for copyright info
+==3257593== Command: ./bin/pex3 input3.txt
+==3257593== 
+Analysis complete! Results can be found can be found in 'output/techAnalysisResult.txt'.
+==3257593== 
+==3257593== HEAP SUMMARY:
+==3257593==     in use at exit: 0 bytes in 0 blocks
+==3257593==   total heap usage: 36 allocs, 36 frees, 93,016 bytes allocated
+==3257593== 
+==3257593== All heap blocks were freed -- no leaks are possible
+==3257593== 
+==3257593== For lists of detected and suppressed errors, rerun with: -s
+==3257593== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+[?2004h]0;karanovl@tux7: ~/csci260/assignment3[01;32mkaranovl@tux7[00m:[01;34m~/csci260/assignment3[00m$ exit
+[?2004lexit
+
+Script done on 2024-12-09 00:43:23-08:00 [COMMAND_EXIT_CODE="0"]
