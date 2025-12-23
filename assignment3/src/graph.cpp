@@ -8,6 +8,7 @@
  * This class contains a vector of vertex objects and a vector of edge objects, both of which are defined in the 'include/vertex.h' header file.
  */
 
+#include <cmath>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -75,6 +76,8 @@ using std::endl;
         return -1;
     }
 
+
+    
     /** @brief Inserts an edge into the graph's adjacency matrix.
     *
     *  Takes input edge data from parameters and inserts it into the appropriate place in the adjacency matrix. Will not insert
